@@ -1,6 +1,1 @@
 # Helm chart values
-external-dns:
-  serviceAccount:
-    create: true
-    name: "external-dns-sa"
-  provider: "aws"
