@@ -65,14 +65,16 @@ spec:
                 ingress:
                   enabled: true
                   controller: "aws"
-                  ingressClassName: "alb"
-                  annotations:
-                    alb.ingress.kubernetes.io/scheme: "internet-facing"
-                    alb.ingress.kubernetes.io/target-type: "ip"
-                    alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
-                    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\":80},{\"HTTPS\":443}]"
-                    alb.ingress.kubernetes.io/ssl-redirect: "443"
-                    alb.ingress.kubernetes.io/tags: "Environment=hub,GitOps=true"
+                  ingressClassName: "ingress-nginx-external"
+                  hostname: {{.metadata.annotations.argocd_domain}}
+                  # ingressClassName: "alb"
+                  # annotations:
+                  #   alb.ingress.kubernetes.io/scheme: "internet-facing"
+                  #   alb.ingress.kubernetes.io/target-type: "ip"
+                  #   alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
+                  #   alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\":80},{\"HTTPS\":443}]"
+                  #   alb.ingress.kubernetes.io/ssl-redirect: "443"
+                  #   alb.ingress.kubernetes.io/tags: "Environment=hub,GitOps=true"
                   aws:
                     serviceType: "ClusterIP"  # Instance mode needs type NodePort, IP mode needs type ClusterIP or NodePort
                     backendProtocolVersion: "GRPC"  # This tells AWS to send traffic from the ALB using HTTP2. Can use gRPC as well if you want to leverage gRPC specific features
