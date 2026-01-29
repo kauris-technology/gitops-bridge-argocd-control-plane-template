@@ -1,0 +1,11 @@
+configs:
+  secret:
+    argocdServerAdminPassword: "Ethanandelora1208$$"
+  cm:
+    application.resourceTrackingMethod: annotation
+    accounts.admin: "apiKey, login"
+  params:
+    "server.insecure": true
+server:
+  ingress:
+    enabled: false
