@@ -1,11 +1,38 @@
-configs:
-  secret:
-    argocdServerAdminPassword: "Ethanandelora1208$$"
-  cm:
-    application.resourceTrackingMethod: annotation
-    accounts.admin: "apiKey, login"
-  params:
-    "server.insecure": true
-server:
-  ingress:
-    enabled: false
+# -- Ingress parameters
+ingress:
+  enabled: true
+  className: "ingress-nginx-external"
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    external-dns.alpha.kubernetes.io/hostname: "backstage.dev.awsops.kauris.ca"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  host: "backstage.dev.awsops.kauris.ca"
+  tls: []
+
+backstage:
+  replicas: 2
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 80
+
+  # -- Container ports on the Deployment
+  containerPorts:
+    backend: 7007
+  
+  extraEnvVars:
+    - name: NODE_ENV
+      value: development
+    # - name: ARGOCD_URL
+    #   value: "http://argocd.dev.awsops.kauris.ca"
+    - name: BASE_URL
+      value: "backstage.dev.awsops.kauris.ca"
+    - name: CATALOG_LOCATION
+      value: "https://github.com/kauris-technology/kodedevops-backstage/blob/main/catalog/catalog-all.yaml"
+    # - name: POSTGRES_HOST
+    #   value: "backstage-rw"
+    # - name: POSTGRES_PORT
+    #   value: "5432"
+    - name: NODE_TLS_REJECT_UNAUTHORIZED
+      value: "0"
