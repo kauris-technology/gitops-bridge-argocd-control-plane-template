@@ -1,1 +1,35 @@
 # Helm chart values
+# values.yaml for OpenTelemetry Collector
+mode: deployment # or daemonset, statefulset
+
+image:
+  repository: otel/opentelemetry-collector-k8s
+
+# Example configuration: OTLP receiver to get data from applications, and a logging exporter for verification
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+        http:
+  processors:
+    batch:
+  exporters:
+    logging:
+      loglevel: debug
+    # Add your actual backend exporter here (e.g., prometheus, otlphttp to SigNoz, Jaeger, etc.)
+
+  service:
+    pipelines:
+      metrics:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [logging]
+      traces:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [logging]
+      logs:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [logging]
