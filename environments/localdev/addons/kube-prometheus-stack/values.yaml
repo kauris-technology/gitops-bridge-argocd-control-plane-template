@@ -8,6 +8,7 @@ grafana:
       nginx.ingress.kubernetes.io/rewrite-target: /
     hosts: 
       - "grafana.kauris.local"
+      - "grafana.kaurislab.ca"
     path: /
 
 prometheus:
