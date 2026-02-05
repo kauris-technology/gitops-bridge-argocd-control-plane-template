@@ -1,0 +1,36 @@
+# -- Ingress parameters
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  host: "backstage.kauris.local"
+
+backstage:
+  replicas: 2
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 6
+    targetCPUUtilizationPercentage: 80
+
+  # -- Container ports on the Deployment
+  containerPorts:
+    backend: 7007
+  
+  extraEnvVars:
+    - name: NODE_ENV
+      value: localdev
+    # - name: ARGOCD_URL
+    #   value: "http://argocd.dev.awsops.kauris.ca"
+    - name: BASE_URL
+      value: "backstage.kauris.local"
+    - name: CATALOG_LOCATION
+      value: "https://github.com/kauris-technology/kodedevops-backstage/blob/main/catalog/catalog-all.yaml"
+    # - name: POSTGRES_HOST
+    #   value: "backstage-rw"
+    # - name: POSTGRES_PORT
+    #   value: "5432"
+    - name: NODE_TLS_REJECT_UNAUTHORIZED
+      value: "0"

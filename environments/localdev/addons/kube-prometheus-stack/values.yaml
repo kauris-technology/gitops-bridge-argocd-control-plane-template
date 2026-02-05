@@ -1,0 +1,22 @@
+# Helm chart values
+grafana:
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    hosts: 
+      - "grafana.kauris.local"
+    path: /
+
+prometheus:
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    hosts: 
+      - "prometheus.kauris.local"
+    path: /
