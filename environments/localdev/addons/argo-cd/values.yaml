@@ -34,6 +34,10 @@ applicationSet:
       annotations:
         prometheus.io/scrape: true
 
+configs:
+  params:
+    server.insecure: "true" # Set to true for local development, not recommended for production
+
 server:
   autoscaling:
     enabled: true
@@ -51,7 +55,19 @@ server:
       annotations:
         prometheus.io/scrape: true
   service:
-    type: LoadBalancer
+    type: ClusterIP
+  # ingress:
+  #   enabled: true
+  #   ingressClassName: nginx
+  #   hosts:
+  #     - host: argocd.kaurislab.ca
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #     - host: argocd.kauris.local
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
 
 # -- Array of extra K8s manifests to deploy
 ## Note: Supports use of custom Helm templates
