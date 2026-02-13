@@ -1,13 +1,5 @@
 # Helm chart values
-loki:
-  enabled: true
-  persistence:
-    type: pvc
-    enabled: false
-    existingClaim: loki
-  securityContext:
-    runAsGroup: 10001
-    runAsUser: 10001
+deploymentMode: Distributed
 
 promtail:
   enabled: false
