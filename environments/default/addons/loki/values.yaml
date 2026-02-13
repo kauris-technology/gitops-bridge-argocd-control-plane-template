@@ -8,6 +8,9 @@ read:
 write:
   replicas: 0
 
+gateway:
+  enabled: false
+  
 loki:
   auth_enabled: true
   isDefault: true
