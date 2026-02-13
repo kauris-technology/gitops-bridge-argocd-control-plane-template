@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-opentelemetry-collector
+  name: addons-otel-collector
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -12,16 +12,16 @@ spec:
         generators:
           - clusters:
               values:
-                addonChart: opentelemetry-collector
+                addonChart: otel-collector
                 # anything not staging or prod use this version
-                addonChartVersion: 0.144.0
+                addonChartVersion: 0.145.0
                 addonChartRepository: https://open-telemetry.github.io/opentelemetry-helm-charts
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
                     operator: NotIn
                     values: [in-cluster]
-                  - key: enable_opentelemetry_collector
+                  - key: enable_otel_collector
                     operator: In
                     values: ['true']
           - clusters:
@@ -29,13 +29,13 @@ spec:
                 matchLabels:
                   environment: staging
               values:
-                addonChartVersion: 0.144.0
+                addonChartVersion: 0.145.0
           - clusters:
               selector:
                 matchLabels:
                   environment: prod
               values:
-                addonChartVersion: 0.144.0
+                addonChartVersion: 0.145.0
   template:
     metadata:
       name: addon-{{name}}-{{values.addonChart}}

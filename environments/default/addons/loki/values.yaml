@@ -1,0 +1,28 @@
+# Helm chart values
+loki:
+  enabled: true
+  persistence:
+    type: pvc
+    enabled: false
+    existingClaim: loki
+  securityContext:
+    runAsGroup: 10001
+    runAsUser: 10001
+
+promtail:
+  enabled: false
+
+fluent-bit:
+  enabled: false
+
+grafana:
+  enabled: false
+
+prometheus:
+  enabled: false
+
+filebeat:
+  enabled: false
+
+logstash:
+  enabled: false
