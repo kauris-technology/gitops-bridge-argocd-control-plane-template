@@ -25,9 +25,9 @@ loki:
       - from: "2022-01-11"
         index:
           period: 24h
-          prefix: loki_ye
+          prefix: index_
         object_store: filesystem
-        schema: v12
+        schema: v13
         store: boltdb-shipper
 minio:
   enabled: false

@@ -6,12 +6,12 @@ image:
   repository: "ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s"
   pullPolicy: IfNotPresent
 
-extraEnvs:
-  - name: GRAFANA_CLOUD_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: grafana-cloud-config
-        key: password
+# extraEnvs:
+#   - name: GRAFANA_CLOUD_PASSWORD
+#     valueFrom:
+#       secretKeyRef:
+#         name: grafana-cloud-config
+#         key: password
 # Example configuration: OTLP receiver to get data from applications, and a logging exporter for verification
 config:
   receivers:
