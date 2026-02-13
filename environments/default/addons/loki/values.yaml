@@ -1,6 +1,23 @@
 # Helm chart values
 deploymentMode: Distributed
 
+
+loki:
+  auth_enabled: true
+  isDefault: true
+  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+  storage:
+    type: 'filesystem'
+  persistence:
+    enabled: true
+    storageClass: "longhorn" # Use "standard" or a class available in your cluster (e.g., "local-path" if using kind/minikube)
+    accessModes:
+      - ReadWriteOnce
+    size: 4Gi # Adjust size based on your needs
+
+minio:
+  enabled: false
+
 promtail:
   enabled: false
 
