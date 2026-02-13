@@ -2,11 +2,11 @@
 deploymentMode: SingleBinary
 
 backend:
-  replicas: 2
+  replicas: 0
 read:
-  replicas: 2
+  replicas: 0
 write:
-  replicas: 2
+  replicas: 0
 
 loki:
   auth_enabled: true
