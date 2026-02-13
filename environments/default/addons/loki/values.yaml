@@ -1,6 +1,12 @@
 # Helm chart values
-deploymentMode: Distributed
+deploymentMode: SingleBinary
 
+backend:
+  replicas: 2
+read:
+  replicas: 2
+write:
+  replicas: 2
 
 loki:
   auth_enabled: true
