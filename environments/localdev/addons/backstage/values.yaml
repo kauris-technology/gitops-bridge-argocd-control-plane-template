@@ -4,18 +4,19 @@ kubeVersion: "1.34.1"
 ingress:
   enabled: true
   className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+  #   nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
   host: "backstage.kauris.local"
-  extraHosts: 
-    - host: "backstage.kaurislab.ca"
-      paths: "/"
+  path: /
+  extraHosts:
+    - name: "backstage.kaurislab.ca"
+      path: "/"
 
 backstage:
   replicas: 1
   autoscaling:
-    enabled: true
+    enabled: false
     minReplicas: 1
     maxReplicas: 6
     targetCPUUtilizationPercentage: 80
