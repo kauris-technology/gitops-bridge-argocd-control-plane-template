@@ -1,4 +1,5 @@
 # Helm chart values
+external_url: "https://harbor.kaurislab.ca"
 harborAdminPassword: "werpoi" #will be moved later
 expose:
   type: ingress
