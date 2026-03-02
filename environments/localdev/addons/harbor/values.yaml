@@ -1,6 +1,13 @@
 # Helm chart values
 external_url: "https://harbor.kaurislab.ca"
 harborAdminPassword: "werpoi" #will be moved later
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      size: 3Gi
+    trivy:
+      size: 2Gi
 expose:
   type: ingress
   # tls:
