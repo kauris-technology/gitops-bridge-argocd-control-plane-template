@@ -1,4 +1,5 @@
 # Helm chart values
+harborAdminPassword: "werpoi" #will be moved later
 expose:
   type: ingress
   # tls:
@@ -13,7 +14,6 @@ expose:
     className: nginx
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: HTTP
-      # note different ingress controllers may require a different ssl-redirect annotation
-      # for Envoy, use ingress.kubernetes.io/force-ssl-redirect: "true" and remove the nginx lines below
-      nginx.ingress.kubernetes.io/ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      # nginx.ingress.kubernetes.io/proxy-body-size: "0"
