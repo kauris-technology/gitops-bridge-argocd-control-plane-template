@@ -26,8 +26,8 @@ backstage:
     backend: 7007
   
   extraEnvVars:
-    - name: NODE_ENV
-      value: production
+    # - name: NODE_ENV
+    #   value: production
     # - name: ARGOCD_URL
     #   value: "http://argocd.dev.awsops.kauris.ca"
     - name: APP_CONFIG_backend_baseUrl
