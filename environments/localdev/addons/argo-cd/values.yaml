@@ -60,15 +60,12 @@ server:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hosts:
-      - host: argocd.kaurislab.ca
-        paths:
-          - path: /
-            pathType: Prefix
-      - host: argocd.kauris.local
-        paths:
-          - path: /
-            pathType: Prefix
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    hostname: argocd.kaurislab.ca
+    extraHosts:
+      - argocd.kauris.local
+
 
 # -- Array of extra K8s manifests to deploy
 ## Note: Supports use of custom Helm templates
