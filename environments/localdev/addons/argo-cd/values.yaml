@@ -57,18 +57,18 @@ server:
   service:
     type: ClusterIP
     loadBalancerIP: ""
-  # ingress:
-  #   enabled: true
-  #   ingressClassName: nginx
-  #   hosts:
-  #     - host: argocd.kaurislab.ca
-  #       paths:
-  #         - path: /
-  #           pathType: Prefix
-  #     - host: argocd.kauris.local
-  #       paths:
-  #         - path: /
-  #           pathType: Prefix
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - host: argocd.kaurislab.ca
+        paths:
+          - path: /
+            pathType: Prefix
+      - host: argocd.kauris.local
+        paths:
+          - path: /
+            pathType: Prefix
 
 # -- Array of extra K8s manifests to deploy
 ## Note: Supports use of custom Helm templates

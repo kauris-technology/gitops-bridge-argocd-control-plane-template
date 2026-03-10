@@ -3,15 +3,13 @@ kubeVersion: "1.34.1"
 # -- Ingress parameters
 ingress:
   enabled: true
-  className: "nginx"
-  # annotations:
-  #   nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-  #   nginx.ingress.kubernetes.io/rewrite-target: /
-  host: "backstage.kaurislab.ca"
-  path: /
-  # extraHosts:
-  #   - name: "backstage.kauris.local"
-  #     path: "/"
+  ingressClassName: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  host: backstage.kaurislab.ca
+  extraHosts:
+    - backstage.kauris.local
 
 backstage:
   replicas: 1
@@ -20,6 +18,9 @@ backstage:
     minReplicas: 1
     maxReplicas: 6
     targetCPUUtilizationPercentage: 80
+  # database:
+  #   client: better-sqlite3
+  #   connection: ':memory:'
 
   # -- Container ports on the Deployment
   containerPorts:
@@ -40,4 +41,14 @@ backstage:
       value: 'http://{{ .Values.ingress.host }}'
     - name: 'APP_CONFIG_backend_cors_origin'
       value: 'http://{{ .Values.ingress.host }}`'
+    - name: POSTGRES_HOST
+      value: "db-postgres"
+    - name: POSTGRES_USER
+      value: "backstage"
+    - name: POSTGRES_PASSWORD
+      value: "backstage"
+    - name: POSTGRES_DB
+      value: "backstage"
+    - name: POSTGRES_PORT
+      value: "5432"
   

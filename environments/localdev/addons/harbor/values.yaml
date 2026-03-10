@@ -1,6 +1,6 @@
 # Helm chart values
-external_url: "https://harbor.kaurislab.ca"
-harborAdminPassword: "werpoi" #will be moved later
+externalURL: "https://harbor.kaurislab.ca"
+harbor_admin_password: "werpoi" #will be moved later
 persistence:
   enabled: true
   persistentVolumeClaim:
@@ -22,6 +22,8 @@ expose:
     className: nginx
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: HTTP
-      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      # nginx.ingress.kubernetes.io/ssl-redirect: "true"
-      # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/proxy-body-size: 0000m
+
+metrics:
+  enabled: false
