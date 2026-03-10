@@ -6,7 +6,6 @@ ingress:
   ingressClassName: "nginx"
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   host: backstage.kaurislab.ca
   extraHosts:
     - backstage.kauris.local
