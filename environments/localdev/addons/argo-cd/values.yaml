@@ -57,14 +57,16 @@ server:
   service:
     type: ClusterIP
     loadBalancerIP: ""
+
   ingress:
     enabled: true
     ingressClassName: nginx
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    hostname: argocd.kaurislab.ca
+    hostname: "argocd.kaurislab.ca"
     extraHosts:
-      - argocd.kauris.local
+      - name: "argocd.kauris.local"
+        path: "/"
 
 
 # -- Array of extra K8s manifests to deploy
